@@ -1,0 +1,13 @@
+{
+  "name": "@jbeard-ef545715-a029-4e10-bc6f-ab3e67e60c70/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@nx/js": "22.0.3",
+    "@nx/workspace": "22.0.3",
+    "nx": "22.0.3"
+  }
+}
