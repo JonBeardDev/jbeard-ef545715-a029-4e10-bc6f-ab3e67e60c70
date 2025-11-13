@@ -1,0 +1,21 @@
+{
+  "name": "data",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "data/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/data",
+        "main": "data/src/index.ts",
+        "tsConfig": "data/tsconfig.lib.json",
+        "assets": ["data/*.md"],
+        "format": ["cjs"],
+        "generatePackageJson": true
+      }
+    }
+  }
+}
