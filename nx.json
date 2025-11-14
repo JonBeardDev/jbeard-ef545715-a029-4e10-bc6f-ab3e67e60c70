@@ -54,5 +54,13 @@
       "style": "css",
       "unitTestRunner": "none"
     }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": []
+      }
+    }
   }
 }

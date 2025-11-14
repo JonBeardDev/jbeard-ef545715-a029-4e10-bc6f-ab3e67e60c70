@@ -31,6 +31,9 @@ import { AuditController } from './audit/audit.controller';
 import { OrganizationsController } from './organizations/organizations.controller';
 import { RolesController } from './roles/roles.controller';
 
+// App Controller
+import { AppController } from './app.controller';
+
 // Seed
 import { SeedService } from './seed/seed.service';
 

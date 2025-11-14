@@ -54,13 +54,13 @@ import { environment } from '../../environments/environment';
                 <td class="px-6 py-4 text-sm text-gray-900">{{ user.email }}</td>
                 <td class="px-6 py-4">
                   <span class="px-2 py-1 text-xs rounded-full"
-                        [ngClass]="user.role.level === 3 ? 'bg-purple-100 text-purple-800' : 
-                                   user.role.level === 2 ? 'bg-blue-100 text-blue-800' : 
+                        [ngClass]="user.role?.level === 3 ? 'bg-purple-100 text-purple-800' : 
+                                   user.role?.level === 2 ? 'bg-blue-100 text-blue-800' : 
                                    'bg-gray-100 text-gray-800'">
-                    {{ user.role.name }}
+                    {{ user.role?.name }}
                   </span>
                 </td>
-                <td class="px-6 py-4 text-sm text-gray-900">{{ user.organization.name }}</td>
+                <td class="px-6 py-4 text-sm text-gray-900">{{ user.organization?.name }}</td>
                 <td class="px-6 py-4 text-sm">
                   <button 
                     (click)="deleteUser(user)"
@@ -216,8 +216,9 @@ export class UsersComponent implements OnInit {
     this.http.get<IRole[]>(`${environment.apiUrl}/roles`).subscribe({
       next: (roles) => {
         // Filter roles based on current user's role level
-        if (this.currentUser?.role) {
-          this.roles = roles.filter(r => r.level < this.currentUser!.role.level);
+        if (this.currentUser && this.currentUser.role) {
+          const currentLevel = this.currentUser.role.level;
+          this.roles = roles.filter(r => r.level < currentLevel);
         } else {
           this.roles = roles;
         }
