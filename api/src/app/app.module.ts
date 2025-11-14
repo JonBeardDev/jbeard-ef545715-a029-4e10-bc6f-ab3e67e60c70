@@ -45,17 +45,27 @@ import { SeedService } from './seed/seed.service';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: configService.get('DB_TYPE') as any || 'sqlite',
-        database: configService.get('DB_DATABASE') || './data/taskmanagement.db',
-        host: configService.get('DB_HOST'),
-        port: configService.get('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        entities: [User, Organization, Role, Task, AuditLog],
-        synchronize: true, // Only for development! Use migrations in production
-        logging: false,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const dbType = configService.get('DB_TYPE') || 'sqlite';
+        const config: any = {
+          type: dbType,
+          entities: [User, Organization, Role, Task, AuditLog],
+          synchronize: true,
+          logging: false,
+        };
+
+        if (dbType === 'sqlite') {
+          config.database = configService.get('DB_DATABASE') || './data/taskmanagement.db';
+        } else if (dbType === 'postgres') {
+          config.host = configService.get('DB_HOST');
+          config.port = configService.get('DB_PORT');
+          config.username = configService.get('DB_USERNAME');
+          config.password = configService.get('DB_PASSWORD');
+          config.database = configService.get('DB_DATABASE');
+        }
+
+        return config;
+      },
     }),
 
     // TypeORM repositories

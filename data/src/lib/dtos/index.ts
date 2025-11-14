@@ -2,27 +2,27 @@ import { TaskStatus, TaskPriority, TaskCategory, RoleType } from '../interfaces'
 
 // Auth DTOs
 export class LoginDto {
-  email: string;
-  password: string;
+  email!: string;
+  password!: string;
 }
 
 export class RegisterDto {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  organizationId: string;
-  roleId: string;
+  email!: string;
+  password!: string;
+  firstName!: string;
+  lastName!: string;
+  organizationId!: string;
+  roleId!: string;
 }
 
 // User DTOs
 export class CreateUserDto {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  organizationId: string;
-  roleId: string;
+  email!: string;
+  password!: string;
+  firstName!: string;
+  lastName!: string;
+  organizationId!: string;
+  roleId!: string;
 }
 
 export class UpdateUserDto {
@@ -34,7 +34,7 @@ export class UpdateUserDto {
 
 // Organization DTOs
 export class CreateOrganizationDto {
-  name: string;
+  name!: string;
   parentId?: string;
 }
 
@@ -45,11 +45,11 @@ export class UpdateOrganizationDto {
 
 // Task DTOs
 export class CreateTaskDto {
-  title: string;
+  title!: string;
   description?: string;
   status?: TaskStatus;
-  category: TaskCategory;
-  priority: TaskPriority;
+  category!: TaskCategory;
+  priority!: TaskPriority;
   dueDate?: Date;
   assignedToId?: string;
   sortOrder?: number;
@@ -79,16 +79,16 @@ export class TaskFilterDto {
 
 // Response DTOs
 export class ApiResponse<T> {
-  success: boolean;
+  success!: boolean;
   data?: T;
   message?: string;
   error?: string;
 }
 
 export class PaginatedResponse<T> {
-  items: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
+  items!: T[];
+  total!: number;
+  page!: number;
+  pageSize!: number;
+  totalPages!: number;
 }
